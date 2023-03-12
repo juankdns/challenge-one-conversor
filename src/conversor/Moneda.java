@@ -1,26 +1,35 @@
 package conversor;
 
+import java.text.DecimalFormat;
+
 public class Moneda implements Convertidor {
 
-	private int cantidad;
-	private int nombreDivisa;
-
-	public Moneda(int cantidad, int nombreDivisa) {
-		this.cantidad = cantidad;
-		this.nombreDivisa = nombreDivisa;
-	}
-
-	public int getCantidad() {
-		return this.cantidad;
-	}
-
-	public int getNombreDivisa() {
-		return this.nombreDivisa;
-	}
-
 	@Override
-	public String convertir(int valor, String origen, String destino) {
-		return null;
-	}
+	public String convertir(double valor, String origen, String destino) {
 
+		DivisasUtil util = new DivisasUtil();
+		String[] divisaOrigen = origen.split(" - ");
+		String[] divisaDestino = destino.split(" - ");
+		String resultado;
+		double valorDivisa;
+
+		if (!divisaOrigen[0].equalsIgnoreCase(divisaDestino[0])) {
+			switch (divisaOrigen[0]) {
+			case "COP" -> valorDivisa = util.getCop().get(divisaDestino[0]);
+			case "USD" -> valorDivisa = util.getUsd().get(divisaDestino[0]);
+			case "EUR" -> valorDivisa = util.getEur().get(divisaDestino[0]);
+			case "GBP" -> valorDivisa = util.getGbp().get(divisaDestino[0]);
+			case "JPY" -> valorDivisa = util.getJpy().get(divisaDestino[0]);
+			case "KRW" -> valorDivisa = util.getKrw().get(divisaDestino[0]);
+			default -> valorDivisa = 1;
+			}
+		} else {
+			valorDivisa = 1;
+		}
+
+		DecimalFormat format = new DecimalFormat("#,##0.00");
+		resultado = divisaOrigen[0] + " " + format.format(valor) + " = " + divisaDestino[0] + " "
+				+ format.format(valor * valorDivisa);
+		return resultado;
+	}
 }

@@ -53,29 +53,29 @@ public class Menu extends JFrame {
 		contentPane.add(lblNewLabel);
 
 		Menu menu = this;
-				
-						JComboBox<Object> tipoConvertidor = new JComboBox<Object>();
-						tipoConvertidor.setFont(new Font("Roboto", Font.PLAIN, 12));
-						tipoConvertidor
-								.setModel(new DefaultComboBoxModel<Object>(new String[] { "Conversor de moneda", "Conversor de temperatura" }));
-						contentPane.add(tipoConvertidor);
-						JButton btnNewButton = new JButton("Continuar\n");
-						btnNewButton.setFont(new Font("Roboto", Font.BOLD, 12));
-						btnNewButton.setForeground(new Color(255, 255, 255));
-						btnNewButton.setBackground(new Color(60, 60, 255));
-						btnNewButton.addActionListener(new ActionListener() {
-							public void actionPerformed(ActionEvent e) {
-								if ("Conversor de moneda".equalsIgnoreCase(tipoConvertidor.getSelectedItem().toString())) {
-									GUIConversorMoneda conversorMoneda = new GUIConversorMoneda();
-									conversorMoneda.setVisible(true);
-									menu.dispose();
-								} else {
-									GUIConversorTemperatura conversorTemperatura = new GUIConversorTemperatura();
-									conversorTemperatura.setVisible(true);
-									menu.dispose();
-								}
-							}
-						});
-						contentPane.add(btnNewButton);
+
+		JComboBox<Object> tipoConvertidor = new JComboBox<Object>();
+		tipoConvertidor.setFont(new Font("Roboto", Font.PLAIN, 12));
+		tipoConvertidor.setModel(
+				new DefaultComboBoxModel<Object>(new String[] { "Conversor de moneda", "Conversor de temperatura" }));
+		contentPane.add(tipoConvertidor);
+		JButton btnNewButton = new JButton("Continuar\n");
+		btnNewButton.setFont(new Font("Roboto", Font.BOLD, 12));
+		btnNewButton.setForeground(new Color(255, 255, 255));
+		btnNewButton.setBackground(new Color(60, 60, 255));
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if ("Conversor de moneda".equalsIgnoreCase(tipoConvertidor.getSelectedItem().toString())) {
+					GUIConversorMoneda conversorMoneda = new GUIConversorMoneda();
+					conversorMoneda.setVisible(true);
+					menu.dispose();
+				} else {
+					GUIConversorTemperatura conversorTemperatura = new GUIConversorTemperatura();
+					conversorTemperatura.setVisible(true);
+					menu.dispose();
+				}
+			}
+		});
+		contentPane.add(btnNewButton);
 	}
 }

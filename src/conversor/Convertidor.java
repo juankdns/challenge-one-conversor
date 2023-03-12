@@ -1,5 +1,5 @@
 package conversor;
 
 public interface Convertidor {
-	public String convertir(int valor, String origen, String destino);
+	public String convertir(double valor, String origen, String destino);
 }
